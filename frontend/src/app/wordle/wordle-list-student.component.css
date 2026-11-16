@@ -1,26 +1,38 @@
 .body {
     display: grid;
     min-height: 100vh;
+    min-height: 100dvh;
     grid-template-rows: auto 1fr auto;
     font-family: "Inter", sans-serif;
+    width: 100%;
+    max-width: 100vw; /* Evita que crezca más allá de la pantalla */
+    overflow-x: hidden;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fa;
 }
 
 .wordle-list {
-    background-color: #f5f7fa;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    padding-left: 25rem;
-    padding-right: 25rem;
-    padding-top: 1rem;
+    gap: 1rem;
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 1rem;
+    box-sizing: border-box; /* Vital para que el padding no sume ancho extra */
 }
 
 .competition-card {
     background-color: #ffffff;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    padding: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilo para flechas */
@@ -30,6 +42,7 @@
     display: inline-block;
     border-radius: 100%;
     transition: background-color 0.2s ease;
+    flex-shrink: 0;
 }
 
 .competition-header:hover .arrow,
@@ -42,35 +55,83 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    width: 100%;
+    padding-left: 1rem;
+    padding-bottom: 0.8rem;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.competition-header:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 2px; /* Un poco más gruesa para marcar mejor la jerarquía */
+    background-color: #cbd5e1; /* Un gris un poco más definido */
 }
 
 .competition-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #1a1a1a;
     margin: 0;
+    word-break: break-word;
 }
 
 .contest-card {
-    margin-left: 20px;
-    border-bottom: 1px solid #dcdcdc;
+    margin-left: 0; 
+    width: 100%;
+    border-bottom: none;
+    position: relative;
     padding: 0.8rem 0;
+    box-sizing: border-box;
+}
+
+
+.contest-card:not(:last-child):after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 1rem;
+    right: 1rem;
+    height: 1px;                  /* Más delgada que la principal para mantener jerarquía */
+    background-color: #e2e8f0;    /* Un gris clarito y suave */
+}
+
+
+.contest-card:last-child {
+    border-bottom: none;
+}
+
+.contest-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    padding-left: 0.5rem;
+    box-sizing: border-box;
 }
 
 .contest-title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #333;
     margin: 0;
+    word-break: break-word;
 }
 
 .wordle-container {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
-    padding: 0.5rem 0 0 50px;
+    padding: 0.5rem 0 0 1.5rem;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .wordle-item {
     display: block;
+    word-break: break-word;
 }
 
 .wordle-badge {
@@ -78,42 +139,86 @@
     color: #015e79;
     font-weight: 600;
     padding: 0.4rem 0;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
-@media (max-width: 450px) {
-    .body {
-        max-width: 80vh;
-        max-height: 40vh;
-    }
+/* === DISPOSITIVOS ESTRECHOS Y PANTALLAS PLEGABLES === */
+@media (max-width: 768px) {
 
     .wordle-list {
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-
-    .competition-card {
-        padding: 1rem;
+        padding-top: 80px;  
         padding-bottom: 1rem;
-        max-width: 55vh;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        gap: 1rem;
     }
 
-    .arrow {
-        font-size: 1em;
+    .hamburger-btn {
+        display: flex;
     }
 
-    .competition-title {
-        font-size: 1.1rem;
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;    
+        left: 0;
+        width: 100%;
+        height: auto;  
+        background-color: #ffffff;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        padding: 10px 0;
+        border-top: 1px solid #eaeaea;
+        z-index: 999;
     }
 
-    .contest-title {
-        font-size: 0.9rem;
+    .nav-links.open {
+        display: flex;
     }
 
-    .wordle-badge {
-        font-weight: 500;
-        font-size: 0.7rem;
+    .nav-button {
+        width: 100%;
+        height: auto;
+        padding: 14px 20px;
+        justify-content: flex-start;
+        border-bottom: none;
+        border-left: 4px solid transparent; 
+        font-weight: normal;                 
     }
 
+    .nav-button.active {
+        background-color: #f8f9fa;
+        border-left: 4px solid #cb0017 !important; 
+        font-weight: bold !important;
+    }
+
+    .nav-button:hover {
+        background-color: #f8f9fa;
+    }
+
+    .spacer {
+        display: none;
+    }
+
+}
+
+/* === MÓVILES EXTREMOS (JioPhone 2, etc.) === */
+@media (max-width: 360px) {
+    .wordle-list {
+        padding-top: 80px;
+        padding-bottom: 6px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+    .competition-card {
+        padding: 8px;
+    }
+    .contest-card {
+        margin-left: 4px;
+        width: calc(100% - 4px);
+    }
+    .wordle-container {
+        padding-left: 8px;
+    }
 }

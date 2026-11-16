@@ -50,8 +50,8 @@
                     </div>
 
                     <div class="form-group text-center">
-                        <button type="submit" class="btn btn-success btn-lg" [disabled]="!f.valid">
-                            <i class="fas fa-user-plus me-2"></i> Crear Cuenta
+                        <button type="submit" class="btn btn-success btn-lg" [disabled]="!f.valid || isSubmitting">
+                            <i class="fas fa-user-plus me-2"></i> {{ isSubmitting ? 'Creando cuenta...' : 'Crear Cuenta' }}
                         </button>
                     </div>
 

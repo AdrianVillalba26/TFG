@@ -20,11 +20,13 @@ export class MenuComponent implements OnInit {
 
   mobilePhone: boolean = false;
 
+  isMenuOpen: boolean = false;
+
   constructor(private tokenService: TokenService) { }
 
   ngOnInit(): void {
 
-    this.mobilePhone = window.innerWidth < 450;
+    this.mobilePhone = window.innerWidth < 768;
 
     if (this.tokenService.getToken())
       this.isLogged = true;
@@ -37,6 +39,10 @@ export class MenuComponent implements OnInit {
       this.isProfessor = true;
     if (this.tokenService.getAuthorities().includes("ROLE_STUDENT"))
       this.isStudent = true;
+  }
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 
   onLogOut(): void {
@@ -54,6 +60,6 @@ export class MenuComponent implements OnInit {
   }
 
   private checkWindowSize() {
-    this.mobilePhone = window.innerWidth < 450;
+    this.mobilePhone = window.innerWidth < 768;
   }
 }

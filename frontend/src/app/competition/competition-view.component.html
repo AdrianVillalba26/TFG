@@ -34,10 +34,21 @@
 
             <div class="tab-content">
                 <div *ngIf="activeTab === 'contests' && contests" class="contests-content">
-                    <div class="contests-list" *ngFor="let contest of contests">
-                        <span class="contest-name"
-                            (click)="navigateToViewContest(contest.id)">{{contest.contestName}}</span>
+                    <div class="contests-table-container">
+                        <table class="contests-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del concurso</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let contest of contests" (click)="navigateToViewContest(contest.id)">
+                                    <td class="contest-cell">{{ contest.contestName }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
+
                     <div *ngIf="isProfessor" class="new-contest">
                         <button class="new-contest-button" (click)="openCreateContest()">
                             <span class="fa fa-plus"></span>

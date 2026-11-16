@@ -1,150 +1,153 @@
 <div class="contest-list-container">
-  <table class="summary-table info-table">
-    <thead>
-      <tr>
-        <th colspan="6" class="table-title">Resumen</th>
-      </tr>
-      <tr>
-        <th class="text-center">Palabra</th>
-        <th class="text-center">Aciertos</th>
-        <th class="text-center">Intentando</th>
-        <th class="text-center">Fallada</th>
-        <th class="text-center">Promedio de intentos</th>
-        <th class="text-center">Promedio de tiempo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let wordle of wordlesData">
-        <td class="text-center">{{ wordle.wordle }}</td>
-        <td class="text-center">{{ getSuccessPercentage(wordle) }}%</td>
-        <td class="text-center">{{ getTryingPercentage(wordle) }}%</td>
-        <td class="text-center">{{ getWrongPercentage(wordle) }}%</td>
-        <td class="text-center">{{ getAverageTries(wordle) }}</td>
-        <td class="text-center">{{ getAverageTime(wordle) }}</td>
-      </tr>
-      <tr *ngIf="!wordlesData || wordlesData.length === 0">
-        <td colspan="6" class="text-center no-data">No hay datos de resumen</td>
-      </tr>
-    </tbody>
-  </table>
+  
+    <table class="summary-table info-table">
+      <thead>
+        <tr>
+          <th colspan="6" class="table-title">Resumen</th>
+        </tr>
+        <tr>
+          <th class="text-center">Palabra</th>
+          <th class="text-center">Aciertos</th>
+          <th class="text-center">Intentando</th>
+          <th class="text-center">Fallada</th>
+          <th class="text-center">Promedio de intentos</th>
+          <th class="text-center">Promedio de tiempo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let wordle of wordlesData">
+          <td class="text-center">{{ wordle.wordle }}</td>
+          <td class="text-center">{{ getSuccessPercentage(wordle) }}%</td>
+          <td class="text-center">{{ getTryingPercentage(wordle) }}%</td>
+          <td class="text-center">{{ getWrongPercentage(wordle) }}%</td>
+          <td class="text-center">{{ getAverageTries(wordle) }}</td>
+          <td class="text-center">{{ getAverageTime(wordle) }}</td>
+        </tr>
+        <tr *ngIf="!wordlesData || wordlesData.length === 0">
+          <td colspan="6" class="text-center no-data">No hay datos de resumen</td>
+        </tr>
+      </tbody>
+    </table>
 
-  <div *ngIf="isProfessor || isAdmin">
-    <div *ngFor="let wordle of wordleStudents">
+    <div *ngIf="isProfessor || isAdmin">
+      <div *ngFor="let wordle of wordleStudents">
+        <table class="details-table info-table">
+          <thead>
+            <tr>
+              <th colspan="8" class="table-title">Palabra: {{ wordle.wordle }}</th>
+            </tr>
+            <tr>
+              <th class="text-center">Alumno</th>
+              <th class="text-center">Correo</th>
+              <th class="text-center">Intentos</th>
+              <th class="text-center">Tiempo inicio</th>
+              <th class="text-center">Tiempo fin</th>
+              <th class="text-center">Tiempo total</th>
+              <th class="text-center">Última palabra</th>
+              <th class="text-center">Terminado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of wordle.students">
+              <td class="text-center">{{ student.name }}</td>
+              <td class="text-center">{{ student.email }}</td>
+              <td class="text-center">{{ student.totalTries }}</td>
+              <td class="text-center">{{ student.startTime | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td class="text-center">{{ student.endTime | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+              <td class="text-center">{{ convertTime(student.totalTime) }}</td>
+              <td class="text-center">{{ student.lastWordle }}</td>
+              <td class="text-center status-badge" [class.status-yes]="student.finished"
+                [class.status-no]="!student.finished">
+                {{ student.finished ? 'Sí' : 'No'}}
+              </td>
+            </tr>
+            <tr *ngIf="!wordle.students || wordle.students.length === 0">
+              <td colspan="8" class="text-center no-data">Nadie ha respondido a este wordle</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <table class="details-table info-table">
         <thead>
           <tr>
-            <th colspan="8" class="table-title">Palabra: {{ wordle.wordle }}</th>
+            <th colspan="8" class="table-title">
+              <span>Logs</span>
+              <button class="btn btn-export" (click)="exportToExcel()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                  <path fill-rule="evenodd"
+                    d="M10 3a.75.75 0 0 1 .75.75v5.69l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l1.97 1.97V3.75A.75.75 0 0 1 10 3Zm-7 9.25a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75H17a.75.75 0 0 1 .75.75Z"
+                    clip-rule="evenodd" />
+                  <path
+                    d="M17 16a2 2 0 0 0 2-2v-2.5a.75.75 0 0 0-1.5 0V14a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5v-2.5a.75.75 0 0 0-1.5 0V14a2 2 0 0 0 2 2h14Z" />
+                </svg>
+                Exportar Excel
+              </button>
+            </th>
           </tr>
           <tr>
             <th class="text-center">Alumno</th>
             <th class="text-center">Correo</th>
-            <th class="text-center">Intentos</th>
-            <th class="text-center">Tiempo inicio</th>
-            <th class="text-center">Tiempo fin</th>
-            <th class="text-center">Tiempo total</th>
-            <th class="text-center">Última palabra</th>
-            <th class="text-center">Terminado</th>
+            <th class="text-center">Marca de tiempo</th>
+            <th class="text-center">Palabra a adivinar</th>
+            <th class="text-center">Posición palabra</th>
+            <th class="text-center">Intento palabra</th>
+            <th class="text-center">Intento</th>
+            <th class="text-center">Estado</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let student of wordle.students">
-            <td class="text-center">{{ student.name }}</td>
-            <td class="text-center">{{ student.email }}</td>
-            <td class="text-center">{{ student.totalTries }}</td>
-            <td class="text-center">{{ student.startTime | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-            <td class="text-center">{{ student.endTime | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-            <td class="text-center">{{ convertTime(student.totalTime) }}</td>
-            <td class="text-center">{{ student.lastWordle }}</td>
-            <td class="text-center status-badge" [class.status-yes]="student.finished"
-              [class.status-no]="!student.finished">
-              {{ student.finished ? 'Sí' : 'No'}}
+          <tr *ngFor="let log of studentsLog">
+            <td class="text-center">{{ log.student }}</td>
+            <td class="text-center">{{ log.email }}</td>
+            <td class="text-center">{{ log.time | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+            <td class="text-center">{{ log.wordleToGuess }}</td>
+            <td class="text-center">{{ log.wordlePosition }}</td>
+            <td class="text-center">{{ log.wordleInserted }}</td>
+            <td class="text-center">{{ log.try }}</td>
+            <td class="text-center status-badge" [class.status-yes]="log.state" [class.status-no]="!log.state">
+              {{ log.state ? 'Correcta' : 'Incorrecta'}}
             </td>
           </tr>
-          <tr *ngIf="!wordle.students || wordle.students.length === 0">
-            <td colspan="8" class="text-center no-data">Nadie ha respondido a este wordle</td>
+          <tr *ngIf="!studentsLog || studentsLog.length === 0">
+            <td colspan="8" class="text-center no-data">No hay logs disponibles</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <table class="details-table info-table">
-      <thead>
-        <tr>
-          <th colspan="8" class="table-title">
-            <span>Logs</span>
-            <button class="btn btn-export" (click)="exportToExcel()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-                <path fill-rule="evenodd"
-                  d="M10 3a.75.75 0 0 1 .75.75v5.69l1.97-1.97a.75.75 0 1 1 1.06 1.06l-3.5 3.5a.75.75 0 0 1-1.06 0l-3.5-3.5a.75.75 0 1 1 1.06-1.06l1.97 1.97V3.75A.75.75 0 0 1 10 3Zm-7 9.25a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H3a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75h.01a.75.75 0 0 1 .75.75Zm3 0a.75.75 0 0 1 .75.75v.01a.75.75 0 0 1-.75.75h-.01a.75.75 0 0 1-.75-.75V13a.75.75 0 0 1 .75-.75H17a.75.75 0 0 1 .75.75Z"
-                  clip-rule="evenodd" />
-                <path
-                  d="M17 16a2 2 0 0 0 2-2v-2.5a.75.75 0 0 0-1.5 0V14a.5.5 0 0 1-.5.5H3a.5.5 0 0 1-.5-.5v-2.5a.75.75 0 0 0-1.5 0V14a2 2 0 0 0 2 2h14Z" />
-              </svg>
-              Exportar Excel
-            </button>
-          </th>
-        </tr>
-        <tr>
-          <th class="text-center">Alumno</th>
-          <th class="text-center">Correo</th>
-          <th class="text-center">Marca de tiempo</th>
-          <th class="text-center">Palabra a adivinar</th>
-          <th class="text-center">Posición palabra</th>
-          <th class="text-center">Intento palabra</th>
-          <th class="text-center">Intento</th>
-          <th class="text-center">Estado</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let log of studentsLog">
-          <td class="text-center">{{ log.student }}</td>
-          <td class="text-center">{{ log.email }}</td>
-          <td class="text-center">{{ log.time | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-          <td class="text-center">{{ log.wordleToGuess }}</td>
-          <td class="text-center">{{ log.wordlePosition }}</td>
-          <td class="text-center">{{ log.wordleInserted }}</td>
-          <td class="text-center">{{ log.try }}</td>
-          <td class="text-center status-badge" [class.status-yes]="log.state" [class.status-no]="!log.state">
-            {{ log.state ? 'Correcta' : 'Incorrecta'}}
-          </td>
-        </tr>
-        <tr *ngIf="!studentsLog || studentsLog.length === 0">
-          <td colspan="8" class="text-center no-data">No hay logs disponibles</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div *ngIf="isStudent">
-    <div *ngFor="let wordle of studentInformation">
-      <table class="details-table info-table">
-        <thead>
-          <tr>
-            <th colspan="6" class="table-title">Palabra: {{ wordle.wordle }}</th>
-          </tr>
-          <tr>
-            <th class="text-center">Intento</th>
-            <th class="text-center">Tiempo</th>
-            <th class="text-center">Palabra</th>
-            <th class="text-center">Correctas</th>
-            <th class="text-center">Mal colocadas</th>
-            <th class="text-center">Erróneas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let info of wordle.info">
-            <td class="text-center">{{ info.nunTry }}</td>
-            <td class="text-center">{{ info.time | date:'HH:mm:ss' }}</td>
-            <td class="text-center">{{ info.lastWord }}</td>
-            <td class="text-center">{{ info.correct }}</td>
-            <td class="text-center">{{ info.wrongPlace }}</td>
-            <td class="text-center">{{ info.wrong }}</td>
-          </tr>
-          <tr *ngIf="!wordle.info || wordle.info.length === 0">
-            <td colspan="6" class="text-center no-data">No hay información de intentos para esta palabra.</td>
-          </tr>
-        </tbody>
-      </table>
+    <div *ngIf="isStudent">
+      <div *ngFor="let wordle of studentInformation">
+        <table class="details-table info-table">
+          <thead>
+            <tr>
+              <th colspan="6" class="table-title">Palabra: {{ wordle.wordle }}</th>
+            </tr>
+            <tr>
+              <th class="text-center">Intento</th>
+              <th class="text-center">Tiempo</th>
+              <th class="text-center">Palabra</th>
+              <th class="text-center">Correctas</th>
+              <th class="text-center">Mal colocadas</th>
+              <th class="text-center">Erróneas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let info of wordle.info">
+              <td class="text-center">{{ info.nunTry }}</td>
+              <td class="text-center">{{ info.time | date:'HH:mm:ss' }}</td>
+              <td class="text-center">{{ info.lastWord }}</td>
+              <td class="text-center">{{ info.correct }}</td>
+              <td class="text-center">{{ info.wrongPlace }}</td>
+              <td class="text-center">{{ info.wrong }}</td>
+            </tr>
+            <tr *ngIf="!wordle.info || wordle.info.length === 0">
+              <td colspan="6" class="text-center no-data">No hay información de intentos para esta palabra.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  
+
 </div>

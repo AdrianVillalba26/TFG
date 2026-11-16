@@ -27,7 +27,7 @@ RUN mvn clean package -DskipTests
 
 
 # Build Docker Image
-FROM openjdk:17
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /wordle-app
 

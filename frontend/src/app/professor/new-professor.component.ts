@@ -15,6 +15,7 @@ export class NewProfessorComponent {
   userName!: string;
   email!: string;
   password!: string;
+  isSubmitting = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.router.events.subscribe(event => {
@@ -27,6 +28,12 @@ export class NewProfessorComponent {
   }
 
   onRegister() {
+
+    if (this.isSubmitting) {
+      return;
+    }
+
+    this.isSubmitting = true;
     const roles: string[] = ['professor'];
 
     this.newUser = new NewUser(this.userName, this.email, this.password, roles);
@@ -35,9 +42,12 @@ export class NewProfessorComponent {
       },
       error: (err) => {
         console.error('Error al crear la cuenta:', err);
+        this.isSubmitting = false;
       },
       complete: () => {
         alert('Usuario creado correctamente');
+        this.isSubmitting = false;
+        this.router.navigate(['/usuarios']);
       }
     };
 

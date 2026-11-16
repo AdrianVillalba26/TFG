@@ -8,16 +8,25 @@
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
   font-family: "Inter", sans-serif;
   color: #343a40;
+  box-sizing: border-box;
+}
+
+/* --- CONTENEDOR RESPONSIVE PARA LA TABLA DE ESTADÍSTICAS--- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;          /* Permite deslizar horizontalmente en móvil si no cabe */
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .info-table {
   width: 100%;
+  min-width: 550px;        /* Evita que las columnas colapsen o se aplasten demasiado */
   border-collapse: collapse;
-  margin: 0 0 30px 0;
+  margin: 0 ;
   background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
   font-size: 14px;
 }
 
@@ -28,12 +37,14 @@
   padding: 12px 10px;
   font-weight: 600;
   font-size: 14px;
+  white-space: nowrap;       /* Evita que el texto de los títulos se rompa en varias líneas */
 }
 
 .info-table tbody td {
   padding: 10px 8px;
   border-top: 1px solid #dee2e6;
   font-size: 13px;
+  white-space: nowrap;       /* Evita que el texto de los títulos se rompa en varias líneas */
 }
 
 .text-center {
@@ -55,6 +66,7 @@
   font-weight: 600;
   display: inline-block;
   min-width: 60px;
+  text-align: center;
 }
 
 .status-yes {
@@ -93,33 +105,17 @@
 }
 
 @media (max-width: 450px) {
+  .contest-list-container {
+    padding: 15px 10px;
+  }
 
   .info-table thead th {
-    font-size: 8px;
+    font-size: 11px;
   }
 
   .info-table tbody td {
-    font-size: 8px;
+    font-size: 11px;
   }
 
-  .status-badge {
-    padding: 2px 5px;
-    border-radius: 10px;
-    font-weight: 300;
-    display: inline-block;
-    min-width: 30px;
-    text-align: center;
-  }
-
-  .table-title {
-    font-size: 8px !important;
-  }
-
-  .no-data {
-    font-size: 8px;
-  }
-
-  .btn.btn-export {
-    font-size: 8px;
-  }
+  
 }

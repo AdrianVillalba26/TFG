@@ -20,6 +20,8 @@
   padding: 15px 15px;
   margin-bottom: 20px;
   justify-content: space-between;
+  padding-top: 95px;
+  box-sizing: border-box;
 }
 
 .title-container h1 {
@@ -46,6 +48,7 @@
   max-width: 800px;
   margin: 0 auto 20px auto;
   padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .competition-list {
@@ -61,9 +64,22 @@
   padding: 10px 15px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #DEE2E6;
+  border-bottom: none;
+  position: relative;
   gap: 10px;
 }
+
+
+.competition-header:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background-color: #DEE2E6;
+}
+
 
 .competition-header h3 {
   cursor: pointer;
@@ -99,11 +115,24 @@
 
 .contest-item {
   padding: 10px 15px 10px 40px;
-  border-bottom: 1px solid #DEE2E6;
+  border-bottom: none;
+  position: relative;
   font-size: 1em;
   background-color: #ffffff;
   color: #015e79;
 }
+
+
+.contest-item:not(:last-child):after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background-color: #DEE2E6;
+}
+
 
 .contest-link {
   cursor: pointer;
@@ -117,6 +146,7 @@
   color: white;
   padding: 0.375rem 0.75rem;
   transition: background-color 0.3s;
+  margin-top: 12px;
 }
 
 .new-competition-button:hover {
