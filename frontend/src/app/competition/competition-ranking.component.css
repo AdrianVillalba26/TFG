@@ -2,30 +2,83 @@
     margin: 20px auto;
     max-width: 800px;
     font-family: "Inter", sans-serif;
+    box-sizing: border-box;
+    padding: 0 5px;
 }
 
 .main-ranking label {
-    margin-right: 5px;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.main-ranking select {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 10px;
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+    margin-bottom: 15px;
+    font-family: inherit;
+    box-sizing: border-box;
+    background-color: #fff;
+}
+
+.table-outer {
+    width: 100%;
+    max-height: 260px; 
+    overflow: auto;    /* Habilita el scroll vertical y horizontal solo aquí */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    box-sizing: border-box;
 }
 
 .main-ranking table {
     width: 100%;
+    min-width: 480px;
     border-collapse: collapse;
     text-align: left;
     background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    
 }
 
 .main-ranking thead th {
+    position: sticky;
+    top: 0;
     background-color: #cb0017;
     color: white;
     font-weight: bold;
-    padding: 10px;
+    padding: 12px 10px;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 13px;
     text-align: center;
+    z-index: 2;
+}
+
+.main-ranking table th:first-child,
+.main-ranking table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1; /* Por debajo de la cabecera general, pero por encima de las demás celdas */
+}
+
+/* Fondo específico para la esquina superior izquierda (cruce de cabecera y primera columna) */
+.main-ranking table th:first-child {
+    background-color: #cb0017 !important;
+    z-index: 4; 
+}
+
+/* Fondo para las celdas de la primera columna para que no se transparente el texto al hacer scroll */
+.main-ranking table td:first-child {
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 15px;
+}
+
+/* Alternancia de colores en las filas manteniendo el fondo blanco en la columna fija */
+.main-ranking tbody tr:nth-child(odd) td:first-child {
+    background-color: #f8f9fa; /* Coincide con el gris clarito de las filas impares */
 }
 
 .main-ranking tbody tr {
@@ -38,11 +91,16 @@
 
 .main-ranking tbody td {
     padding: 10px;
-    font-size: 14px;
+    font-size: 13px;
     color: #555;
     text-align: center;
+    white-space: nowrap;
 }
 
 .main-ranking tbody tr:hover {
     background-color: #e9f5ff;
+}
+
+.main-ranking tbody tr:hover td:first-child {
+    background-color: #e9f5ff; /* Color al pasar el ratón o tocar la fila */
 }

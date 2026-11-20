@@ -11,33 +11,109 @@
   box-sizing: border-box;
 }
 
+/* Nueva tarjeta contenedora para unir visualmente título y tabla */
+.table-card {
+  width: 100%;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  background-color: #fff;
+  overflow: hidden; /* Mantiene las esquinas redondeadas limpias */
+  box-sizing: border-box;
+}
+
 /* --- CONTENEDOR RESPONSIVE PARA LA TABLA DE ESTADÍSTICAS--- */
-.table-responsive {
+.table-outer {
     width: 100%;
-    overflow-x: auto;          /* Permite deslizar horizontalmente en móvil si no cabe */
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+    max-height: 220px;
+    overflow: auto;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
+.table-title-fixed {
+  width: 100%;
+  background-color: #cb0017;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  padding: 14px 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .info-table {
   width: 100%;
-  min-width: 550px;        /* Evita que las columnas colapsen o se aplasten demasiado */
+  min-width: 750px;        /* Evita que las columnas colapsen o se aplasten demasiado */
   border-collapse: collapse;
-  margin: 0 ;
+  margin: 0;
   background-color: #fff;
   font-size: 14px;
 }
 
 .info-table thead th {
+  position: sticky;
+  top: 0;
   background-color: #f8f9fa;
   color: #495057;
   text-align: left;
   padding: 12px 10px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;       /* Evita que el texto de los títulos se rompa en varias líneas */
+  z-index: 2;
+}
+
+/* Títulos principales destacados (como el de Resumen o el rojo) */
+.info-table thead th.table-title {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #cb0017 !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  text-align: center !important;
+  padding: 14px 10px !important;
+  z-index: 5; /* Por encima de todo para que no se oculte al hacer scroll */
+  box-sizing: border-box;
+}
+
+/* --- PRIMERA COLUMNA FIJA A LA IZQUIERDA (Sticky left) --- */
+.info-table th:first-child,
+.info-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* --- FIX PARA LA CABECERA DE LA PRIMERA COLUMNA --- */
+/* Al quitar la fila del título rojo del thead, la cabecera de columnas ahora es la primera fila (tr:first-child) */
+.info-table thead tr:first-child th:first-child {
+  background-color: #f8f9fa !important;
+  z-index: 4; /* Por encima de las celdas al hacer scroll horizontal y vertical */
+}
+
+/* Cruce entre la cabecera principal y la primera columna */
+.info-table thead tr:nth-child(2) th:first-child {
+  background-color: #f8f9fa !important;
+  z-index: 3;
+}
+
+/* Celdas de la primera columna con fondo fijo para que no se transparente el texto */
+.info-table tbody td:first-child {
+  background-color: #ffffff;
+  font-weight: bold;
+  padding-left: 12px;
+}
+
+/* Alternancia de colores en las filas manteniendo el fondo en la columna fija */
+.info-table tbody tr:nth-child(odd) td:first-child {
+  background-color: #f8f9fa;
 }
 
 .info-table tbody td {

@@ -1,15 +1,14 @@
 .body {
-    display: grid;
-    min-height: 50vh;
-    grid-template-rows: auto 1fr auto;
+    display: block;
+    width: 100%;
     font-family: "Inter", sans-serif;
 }
 
 .container {
     max-width: 600px;
-    max-height: 500px;
-    margin: 3rem auto;
-    padding: 2.5rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1.5rem;
     background-color: #ffffff;
     border: none;
     border-radius: 16px;
@@ -20,10 +19,13 @@
 .container h2 {
     text-align: center;
     color: #1a1a1a;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .form-group {
@@ -111,4 +113,26 @@
 .btn:disabled {
     opacity: 0.65;
     cursor: not-allowed;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .container h2 {
+        font-size: 1.35rem;
+        margin-bottom: 1rem;
+    }
+
+    .form-control {
+        padding: 0.6rem 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.95rem;
+    }
 }

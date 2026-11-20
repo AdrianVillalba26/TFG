@@ -2,6 +2,8 @@
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: minmax(0, 1fr);      /* Evita que el grid se estire más allá del ancho de pantalla */
+    width: 100%;
     background-color: #f9f9f9;
     font-family: 'Inter', sans-serif;
 }
@@ -11,16 +13,21 @@
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    width: 100%;
+    min-width: 0;
+    padding: 95px 15px 1.5rem 15px;
+    box-sizing: border-box;
 }
 
 .edit-wordle-card {
     max-width: 600px;
     width: 100%;
+    min-width: 0; /* Permite que la tarjeta se encoga en pantallas de 240px */
     border: none;
     border-radius: 0.5rem;
     background-color: #ffffff;
+    padding: 25px 20px;
+    box-sizing: border-box;
 }
 
 .main-title {
@@ -52,6 +59,8 @@
     font-weight: 600;
     color: #495057;
     font-size: 1.1rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 
@@ -74,6 +83,8 @@
     color: #343a40;
     cursor: pointer;
     padding-left: 0.5rem;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 .btn-primary {

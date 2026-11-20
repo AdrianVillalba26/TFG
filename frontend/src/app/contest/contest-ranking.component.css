@@ -10,6 +10,7 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
+    font-family: inherit;
 }
 
 /* Opcional para asegurar que el bloque de ordenar tenga margen superior */
@@ -19,26 +20,65 @@
     font-weight: 500;
 }
 
+/* --- CONTENEDOR DE LA TABLA (Scroll interno vertical y horizontal) --- */
+.table-outer {
+    width: 100%;
+    max-height: 260px; /* Altura controlada para activar el scroll vertical */
+    overflow: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    box-sizing: border-box;
+}
+
 table {
     width: 100%;
+    min-width: 550px;
     border-collapse: collapse;
     text-align: left;
     background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden; 
     font-family: "Inter", sans-serif;
-    table-layout: fixed; /* Evita que las columnas se expandan demasiado */
 }
 
 thead th {
+    position: sticky;
+    top: 0;
     background-color: #cb0017;
     color: white;
     font-weight: bold;
-    padding: 8px 4px;
+    padding: 10px 8px;
     text-transform: uppercase;
-    font-size: 13px;
-    white-space: normal; /* Permite que el texto salte de línea si no cabe */
-    word-break: break-word;
+    font-size: 12px;
+    text-align: center;
+    z-index: 2;
+    white-space: normal;
+}
+
+/* Primera columna fija a la izquierda (PARTICIPANTE) */
+table th:first-child,
+table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+/* Cruce entre la cabecera y la primera columna */
+table th:first-child {
+    background-color: #cb0017 !important;
+    z-index: 4;
+}
+
+/* Celdas de la primera columna con fondo blanco para que no se transparente el texto */
+table td:first-child {
+    background-color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 12px;
+}
+
+/* Alternancia de colores manteniendo el fondo en la columna fija */
+tbody tr:nth-child(odd) td:first-child {
+    background-color: #f8f9fa;
 }
 
 tbody tr {
@@ -50,11 +90,11 @@ tbody tr:nth-child(odd) {
 }
 
 tbody td {
-    padding: 8px 4px;
+    padding: 10px 8px;
     font-size: 13px;
     color: #555;
-    white-space: normal; /* Permite que el contenido salte de línea */
-    word-break: break-word;
+    text-align: center;
+    white-space: nowrap;
 }
 
 tbody tr:hover {
@@ -71,14 +111,14 @@ tbody tr:hover {
     }
 
     thead th {
-        padding: 6px 2px;
-        font-size: 10px;
+        padding: 8px 4px;
+        font-size: 11px;
         text-align: center;
     }
 
     tbody td {
-        padding: 6px 2px;
-        font-size: 10px;
+        padding: 8px 4px;
+        font-size: 11px;
         text-align: center;
     }
 }

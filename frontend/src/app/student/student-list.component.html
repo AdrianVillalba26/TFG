@@ -1,9 +1,18 @@
 <div class="container">
-    <ul class="student-list">
-        <li *ngFor="let student of students" class="student-item">
-            <span class="student-name">{{ student.username }}</span>
-        </li>
-    </ul>
+    <div class="students-table-container">
+        <table class="students-table">
+            <thead>
+                <tr>
+                    <th>Nombre del alumno</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of students">
+                    <td class="student-cell">{{ student.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <button class="btn primary" (click)="openStudentModal()">
         <span class="fa fa-plus"></span>
@@ -13,8 +22,7 @@
 
 <div class="modal-backdrop" *ngIf="showModal" (click)="closeModalOnBackdropClick($event)">
     <div class="modal">
-        <app-new-student [competitionId]="competitionId" [professorName]="professorName"
-            [competitionId]="competitionId">
+        <app-new-student [competitionId]="competitionId" [professorName]="professorName">
         </app-new-student>
     </div>
 </div>

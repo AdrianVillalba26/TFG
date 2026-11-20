@@ -2,6 +2,7 @@
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
+    overflow-x: hidden;
 }
 
 .contest-info {
@@ -9,6 +10,8 @@
     padding-top: 100px;
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
+    width: 100%;
+    min-width: 0;
 }
 
 /* Título de la Competición */
@@ -17,6 +20,8 @@
     margin-top: 0;
     margin-bottom: 10px;
     cursor: pointer;
+    overflow-wrap: break-word;  /* Parte palabras largas */
+    word-break: break-word;
 }
 
 /* Fila para el nombre del concurso y los botones */
@@ -33,6 +38,8 @@
     color: #cb0017;
     font-size: 1.1em;
     font-weight: bold;
+    overflow-wrap: break-word;  /* Parte palabras largas */
+    word-break: break-word;
 }
 
 /* Contenedor para los botones */
@@ -135,7 +142,7 @@
     margin-right: 5px;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 768px) {
   .contest-info {
     padding: 20px 15px;
     padding-top: 95px;
@@ -168,6 +175,7 @@
     border-bottom: 1px solid #f1f3f5;
     border-left: 4px solid transparent; /* Sin borde lateral por defecto */
     margin-bottom: 0;
+    box-sizing: border-box;
   }
 
   .tab-item.active {

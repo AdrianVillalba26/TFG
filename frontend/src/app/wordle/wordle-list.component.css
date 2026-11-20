@@ -3,6 +3,13 @@
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
     font-family: 'Inter', sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main-content {
+    padding-top: 80px;
+    min-width: 0;
 }
 
 .main-content h2 {
@@ -16,20 +23,23 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     margin-bottom: 16px;
+    padding: 0 10px;
     text-align: center;
 }
 
 .button-group button {
     font-size: calc(0.90375rem + 0.045vw);
-    padding: 0.375rem 0.75rem;
-    margin-right: 10px;
+    padding: 0.375rem 0.5rem;
     background-color: #cb0017;
     border-color: #cb0017;
     color: white;
     border-radius: 0.5rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    white-space: normal;
+    max-width: 100%;
 }
 
 .button-with-dropdown {
@@ -138,13 +148,27 @@
     background-color: #c9e6ff !important;
 }
 
+.folder-name-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 12px; /* Separa el cuadro de texto del elemento de abajo */
+    padding: 0 10px;    /* Lo alinea con los márgenes laterales de la lista en móvil */
+    box-sizing: border-box;
+}
+
 .folder-name-input input[type="text"],
 .folder-item input[type="text"] {
-    padding: 6px;
+    padding: 6px 8px;
     border: 1px solid #ccc;
-    border-radius: 3px;
-    margin-left: 5px;
+    border-radius: 4px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     flex-grow: 1;
+    box-sizing: border-box;
 }
 
 .modal-backdrop {
@@ -179,16 +203,32 @@
     position: relative;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 768px) {
     .wordle-list {
         list-style: none;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
         margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .wordle-list .folder-name-input {
+        padding: 0;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button,
+    .button-with-dropdown {
+        width: 100%;
+        max-width: 240px;
     }
 
     .modal-backdrop {
-        min-width: 100vh;
+        min-width: 100vw;
     }
 
     .modal {

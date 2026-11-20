@@ -1,6 +1,8 @@
 .create-student-navbar {
     border-top: 1px solid #eeeeee;
     margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .nav-tabs {
@@ -41,14 +43,25 @@
     padding: 20px;
     border-top: none;
     min-height: 150px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .registration-card {
     max-width: 500px;
     width: 100%;
+    min-width: 0;
     border: none;
     border-radius: 0.5rem;
     background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.registration-card input,
+.registration-card .form-control {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-label {
@@ -81,8 +94,17 @@
 .upload-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 15px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.upload-form input[type="file"] {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    font-size: 0.85rem;
 }
 
 .btn.primary {
@@ -97,4 +119,64 @@
 
 .btn.primary:hover {
     background-color: #980011;
+}
+
+
+@media (max-width: 768px) {
+    .create-student-navbar {
+        margin-top: 0;
+    }
+
+    .nav-tabs {
+        flex-direction: column;
+        border-top: 3px solid #cb0017;
+    }
+
+    .tab-item {
+        width: 100%;
+        text-align: left;
+        font-size: 0.9rem;
+        padding: 8px 10px;
+        border-bottom: 1px solid #f1f3f5;
+        border-left: 4px solid transparent;
+        border-radius: 0;
+        box-sizing: border-box;
+    }
+
+    .upload-form input[type="file"] {
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.7rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .upload-form input[type="file"]::file-selector-button {
+        width: 100%;
+        padding: 0.35rem 0.25rem;
+        font-size: 0.72rem;
+        margin-right: 0;
+        box-sizing: border-box;
+    }
+
+    .tab-item.active {
+        background-color: #f1f3f5 !important;
+        border-left: 4px solid #cb0017 !important;
+        border-bottom: 1px solid #f1f3f5 !important;
+    }
+
+    .tab-content {
+        padding: 12px 0;
+    }
+
+    .registration-card,
+    .registration-card .card-body {
+        padding: 0.25rem !important;
+    }
+
+    .btn-success,
+    .btn.primary {
+        width: 100%;
+        box-sizing: border-box;
+    }
 }

@@ -8,22 +8,25 @@
         </select>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Participante</th>
-                <th>Nº de aciertos</th>
-                <th>Total de intentos</th>
-                <th>Tiempo total</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let student of studentsRanking">
-                <td style="font-weight: bold;">{{ student.name }}</td>
-                <td>{{ student.rightGuess }}</td>
-                <td>{{ student.totalTries }}</td>
-                <td>{{ formatTime(student.totalTime) }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-outer">
+        <table>
+            <thead>
+                <tr>
+                    <th>Participante</th>
+                    <th>Nº de aciertos</th>
+                    <th>Total de intentos</th>
+                    <th>Tiempo total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentsRanking">
+                    <td style="font-weight: bold;">{{ student.name }}</td>
+                    <td>{{ student.rightGuess }}</td>
+                    <td>{{ student.totalTries }}</td>
+                    <td>{{ formatTime(student.totalTime) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>

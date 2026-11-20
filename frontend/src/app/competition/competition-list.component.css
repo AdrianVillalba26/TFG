@@ -177,11 +177,25 @@
   flex-direction: column;
   width: 90%;
   max-width: 500px;
-  max-height: 60vh;
+  max-height: 80vh;
   overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .modal-content {
   position: relative;
   border: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+@media (max-width: 768px) {
+  .modal {
+    width: 92%;
+    max-width: 500px;
+    max-height: 85vh;
+    padding: 15px;
+  }
 }

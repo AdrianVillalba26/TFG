@@ -1,9 +1,26 @@
 .contest-creation-card {
     max-width: 600px;
     width: 100%;
+    min-width: 0;
     border: none;
     border-radius: 0.5rem;
     background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.contest-creation-card h2,
+.contest-creation-card h3 {
+    text-align: center;
+    margin-top: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.contest-creation-card input,
+.contest-creation-card .form-control {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .form-label {
@@ -32,4 +49,30 @@
 
 .btn-primary:hover:not(:disabled) {
     background-color: #980011;
+}
+
+
+@media (max-width: 768px) {
+    .contest-creation-card,
+    .contest-creation-card .card-body {
+        padding: 0.5rem !important;
+    }
+
+    .contest-creation-card h2,
+    .contest-creation-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .contest-creation-card input,
+    .contest-creation-card .form-control {
+        padding: 0.45rem 0.5rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-primary {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
+    }
 }

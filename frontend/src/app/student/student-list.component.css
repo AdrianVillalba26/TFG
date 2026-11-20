@@ -1,8 +1,62 @@
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 30px 20px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
+.students-table-container {
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 15px;
+  overflow-x: auto;
+  box-sizing: border-box;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  font-family: "Inter", sans-serif;
+}
+
+.students-table thead th {
+  background-color: #cb0017;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 12px 15px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.students-table tbody tr {
+  border-bottom: 1px solid #eeeeee;
+  transition: background-color 0.2s ease;
+}
+
+.students-table tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.students-table tbody tr:hover {
+  background-color: #e9f5ff;
+}
+
+.student-cell {
+  padding: 12px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #015e79;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 
 .btn.primary {
   margin-top: 10px;
@@ -21,30 +75,6 @@
 
 .button-text {
   margin-left: 4px;
-}
-
-.student-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.student-item {
-  background-color: white;
-  padding: 12px 20px;
-  border-top: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
-}
-
-.student-item:nth-child(odd) {
-  background-color: rgba(0, 0, 0, .03);
-}
-
-.student-name {
-  font-weight: 500;
-  font-size: 1em;
-  color: #015e79;
-  font-weight: bold;
 }
 
 .modal-backdrop {
@@ -73,11 +103,25 @@
   max-width: 500px;
   max-height: 75vh;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
-@media (max-width: 450px) {
+@media (max-width: 768px) {
 
-    .modal-backdrop {
-        min-width: 100vh;
-    }
+  .students-table thead th,
+  .student-cell {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .modal-backdrop {
+    min-width: 100vw;
+  }
+
+  .modal {
+    width: 92%;
+    max-width: 500px;
+    max-height: 85vh;
+    padding: 15px;
+  }
 }
