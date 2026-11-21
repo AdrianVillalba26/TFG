@@ -1,9 +1,15 @@
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .body {
     display: grid;
     min-height: 100vh;
     grid-template-rows: auto 1fr auto;
     background-color: #f9f9f9;
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 .main-content {
@@ -12,6 +18,7 @@
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 70px;
 }
 
 h1 {
@@ -106,4 +113,44 @@ button.btn {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     border: none;
     cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem 1rem;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Apila el nombre del usuario y los botones en vertical */
+    .contest-item {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1rem;
+    }
+
+    .user-name {
+        margin-right: 0;
+        margin-bottom: 0.75rem;
+    }
+
+    /* Permite que los botones bajen de línea y se organicen */
+    .button-group {
+        flex-wrap: wrap;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    /* Hace que los botones se distribuyan bien (en 2 columnas o estirados) */
+    .button-group button.btn {
+        flex: 1 1 calc(50% - 0.25rem); /* Dos botones por fila en móvil */
+        justify-content: center;
+        padding: 0.5rem;
+    }
 }

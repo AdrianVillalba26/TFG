@@ -8,6 +8,17 @@
 
 .header {
     grid-row: 1 / 2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    padding: 2rem 1rem; 
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .registration-form-card {
@@ -15,6 +26,8 @@
     width: 100%;
     border: none;
     border-radius: 0.5rem;
+    box-sizing: border-box;
+    margin-top: 70px;
 }
 
 .form-label {
@@ -39,4 +52,22 @@
 
 .btn:hover {
     background-color: #980011;
+}
+
+
+/* Ajustes específicos para móviles */
+@media (max-width: 576px) {
+    .body {
+        padding-top: 10px;
+    }
+    
+    .registration-form-card {
+        padding: 0.5rem !important; /* Reduce padding interno de la tarjeta en pantallas muy estrechas */
+    }
+
+    .container {
+        /* Desactivamos el centrado vertical estricto en móvil para que fluya desde arriba */
+        align-items: flex-start !important; 
+        padding-top: 25px; /* Baja la tarjeta lo suficiente para que el título "Crear Nueva Cuenta" quede totalmente visible */
+    }
 }
