@@ -361,6 +361,12 @@ export class PlayWordleComponent {
           this.finished = true;
           this.won = true;
           this.hasMoreWords = this.currentWordleIndex < this.numWordles - 1;
+
+          /* Aquí se detiene el temporizador si se acierta y además era la última palabra */
+
+          if (!this.hasMoreWords) {
+            clearInterval(this.intervalId);
+          }
         }
 
         if (this.numSubmittedTries === this.numTries && !this.won) {
@@ -371,6 +377,11 @@ export class PlayWordleComponent {
 
           currentGame.finishTime = format(new Date(), 'yyyy-MM-dd HH:mm:ss');
           currentGame.timeNeeded = differenceInSeconds(currentGame.finishTime, currentGame.startTime);
+
+          /* Aquí se detiene el temporizador si se agotan los intentos */
+          clearInterval(this.intervalId);
+          
+
           this.updateContestState();
           this.uploadNewLog();
         } else {

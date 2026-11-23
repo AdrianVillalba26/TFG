@@ -94,6 +94,7 @@ export class EditContestComponent {
         this.contestService.saveExternalDictionary(toSave, this.contestId).subscribe({
           next: () => {
             console.log("Palabras guardadas correctamente en el diccionario");
+            this.file = true;   //Indica que hay un fichero externo válido vinculado
           },
           error: (e) => {
             console.log("Error guardando las palabras del diccionario: ", e);
@@ -105,6 +106,13 @@ export class EditContestComponent {
   }
 
   updateContest() {
+
+    // Validar si activó el diccionario pero no adjuntó ningún archivo
+    if (this.dictionary && !this.file) {
+      alert('Por favor, adjunta un fichero de diccionario válido antes de guardar el concurso.');
+      return; // Detiene el guardado
+    }
+
     const updatedContest: Contest = {
       ...this.contest,
       contestName: this.contestName,

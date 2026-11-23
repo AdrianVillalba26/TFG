@@ -39,7 +39,6 @@
 
 .date-input,
 select,
-input[type="file"],
 input[type="text"] {
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -48,6 +47,19 @@ input[type="text"] {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* --- Solución específica para el selector de ficheros en pantallas estrechas --- */
+input[type="file"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem; /* Ligeramente más pequeño para que quepa mejor */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;       /* Evita que el texto interno desborde */
+  text-overflow: ellipsis; /* Pone puntos suspensivos si el texto es muy largo */
 }
 
 .checkbox-group {
@@ -81,4 +93,12 @@ input[type="text"] {
 
 .btn-primary:hover {
   background-color: #980011;
+}
+
+
+@media (max-width: 576px) {
+  .container {
+    padding: 1rem; /* Reduce un poco el padding general de la tarjeta en móviles pequeños */
+    width: calc(100% - 20px); /* Margen lateral un poco más ajustado para ganar espacio */
+  }
 }

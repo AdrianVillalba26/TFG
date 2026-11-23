@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label for="contestName">Nombre del concurso</label>
-            <input type="text" id="contestName" [(ngModel)]="contestName"/>
+            <input type="text" id="contestName" [(ngModel)]="contestName" />
         </div>
 
         <div class="form-group">
@@ -31,30 +31,26 @@
         <div class="checkbox-group">
             <p>¿Desea utilizar diccionario?</p>
             <label>
-                <input type="checkbox" (change)="useDictionary(true)" [checked]="dictionary" />
+                <input type="radio" name="useDictionaryGroup" (change)="useDictionary(true)" [checked]="dictionary" />
                 Sí
             </label>
             <label>
-                <input type="checkbox" (change)="useDictionary(false)" [checked]="!dictionary" />
+                <input type="radio" name="useDictionaryGroup" (change)="useDictionary(false)"
+                    [checked]="!dictionary" />
                 No
             </label>
         </div>
 
-        <div *ngIf="dictionary" class="checkbox-group">
-            <p>¿Desea importar un fichero de diccionario?</p>
-            <label>
-                <input type="checkbox" (change)="useFile(true)" [checked]="file" />
-                Sí
-            </label>
-            <label>
-                <input type="checkbox" (change)="useFile(false)" [checked]="!file" />
-                No
-            </label>
+        <div *ngIf="dictionary" class="form-group">
+            <p>Adjuntar fichero de diccionario (.txt)</p>
 
-            <div *ngIf="file" class="form-group">
-                <input type="file" accept=".txt" (change)="selectFile($event)" />
-            </div>
+            <p *ngIf="file" class="file-status-text" style="color: green; font-size: 0.9em;">
+                ✓ Ya hay un fichero de diccionario guardado para este concurso. (Puedes subir uno nuevo si deseas reemplazarlo).
+            </p>
+            
+            <input type="file" accept=".txt" (change)="selectFile($event)" />
         </div>
+
 
         <div class="btn-container">
             <button class="btn-primary" (click)="updateContest()">Guardar Concurso</button>

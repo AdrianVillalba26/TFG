@@ -62,11 +62,17 @@
                 </div>
             </div>
 
-            <div *ngIf="hasMoreWords && finished" class="next-word-button-container">
+            <div *ngIf="finished && won && hasMoreWords" class="next-word-button-container">
                 <button (click)="handleNextWord()" class="button-action">Siguiente palabra</button>
             </div>
 
-            <div *ngIf="!hasMoreWords" class="completion-message">
+            <div *ngIf="finished && !won" class="completion-message">
+                ¡Te has quedado sin intentos!
+                <button *ngIf="!isProfessor" (click)="navigateToStatistics()" class="button-action">Ver estadísticas</button>
+                <button *ngIf="isProfessor" (click)="deleteProfessorState()" class="button-action">Volver</button>
+            </div>
+
+            <div *ngIf="finished && won && !hasMoreWords" class="completion-message">
                 ¡Has completado todas las palabras!
                 <button *ngIf="!isProfessor" (click)="navigateToStatistics()" class="button-action">Ver estadísticas</button>
                 <button *ngIf="isProfessor" (click)="deleteProfessorState()" class="button-action">Volver</button>
